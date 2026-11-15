@@ -194,3 +194,8 @@ marked "demo only" are our wording. The database keeps test messages from develo
 - Live monitor: each signal row is a box filled with its status colour (green Normal, yellow Check, red Urgent), with a white status chip and a white "Do this next" box so they still stand out. The Crew dropdown box takes the chosen person's status colour.
 - Sign-in: crew accounts now say "Sees the whole crew's health" (crew view has been open since Session 17).
 - All README screenshots retaken.
+
+## Session 20 (2026-11-15)
+- New logo from Stephen's logo sheet (a planet with an orbit ring and a pin), traced to a vector path so it stays sharp at any size: in the header with the name "Crew Health Monitor", on the sign-in page, as the browser tab icon (white on a dark rounded square, `public/favicon.svg`), as the phone home-screen icon (`public/apple-touch-icon.png`) and at the top of the README (`docs/logo.svg`). The path is `LOGO_PATH` in `src/ui.tsx`.
+- Sign-in: every crew account says "Sees the whole crew's health".
+- README screenshots retaken with the new logo.

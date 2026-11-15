@@ -7,7 +7,7 @@ import { EASE, Logo } from './ui'
 
 const ROLE_NOTE: Record<User['role'], string> = {
   crew: "Sees the whole crew's health",
-  cmo: "Sees every crew member's data",
+  cmo: "Sees the whole crew's health",
   surgeon: 'Sees only what the crew sends to Earth',
 }
 
@@ -34,8 +34,8 @@ export default function SignIn({ onDone }: { onDone: () => void }) {
   return (
     <div className="flex min-h-[100dvh] items-center justify-center px-4 py-10">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: EASE }} className="w-full max-w-md">
-        <div className="flex items-center gap-3">
-          <Logo />
+        <div className="flex items-center gap-4">
+          <Logo size={52} />
           <div>
             <h1 className="text-xl font-semibold tracking-tight">Crew Health Monitor</h1>
             <p className="text-sm text-muted">Choose a person to see their health</p>

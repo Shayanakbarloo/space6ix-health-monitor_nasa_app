@@ -292,7 +292,7 @@ export default function App() {
   return (
     <div className="min-h-[100dvh]">
       <header className="relative z-10 border-b border-line bg-bar/95 px-4 py-2.5 backdrop-blur-md sm:px-6 lg:sticky lg:top-0">
-        {/* Top row: the signed-in person left, the page menu in the middle, the logo right.
+        {/* Top row: the signed-in person left, the page menu in the middle, the logo and name right.
             On smaller screens the menu gets its own centered row under them. */}
         <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-2 min-[1140px]:grid-cols-[1fr_auto_1fr]">
           <div className="col-start-1 row-start-1 flex min-w-0 items-center gap-2.5 justify-self-start">
@@ -324,8 +324,8 @@ export default function App() {
           )}
 
           <div className="col-start-2 row-start-1 flex items-center gap-3 justify-self-end min-[1140px]:col-start-3">
-            <p className="hidden text-[15px] font-semibold tracking-tight 2xl:block">Crew Health Monitor</p>
-            <Logo />
+            <Logo size={36} />
+            <p className="hidden text-[16px] leading-tight font-semibold tracking-tight sm:block">Crew Health Monitor</p>
           </div>
         </div>
 

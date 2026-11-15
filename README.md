@@ -1,3 +1,5 @@
+<img src="docs/logo.svg" alt="Crew Health Monitor logo: a planet with an orbit ring and a pin" width="110">
+
 # Crew Health Monitor
 
 Health monitoring for a crew that cannot call a doctor. Built for the NASA Space Apps Challenge 2026, "Create Health Monitoring Software for Astronauts on Space Missions".
