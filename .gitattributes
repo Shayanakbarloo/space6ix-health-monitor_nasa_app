@@ -1,0 +1,3 @@
+# NASA source files are pinned by SHA-256 in ml/ingest.py. Keep their exact bytes
+# (including Windows line endings) on every computer: never convert line endings.
+data/osdr/*.csv -text

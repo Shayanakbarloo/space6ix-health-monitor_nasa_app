@@ -1,0 +1,351 @@
+// Every threshold in triage.ts points to one of these entries.
+// status:
+//   'verified' = we read the source (or NASA's own summary of it) this project
+//   'partial'  = real source exists, but the exact number still needs a full-text check
+//   'demo'     = no source found. The UI labels it "demo parameter".
+// Full notes for each entry are in RESEARCH_LOG.md (same ids).
+
+export type SourceStatus = 'verified' | 'partial' | 'demo'
+
+export interface Source {
+  id: string
+  title: string
+  url?: string
+  says: string
+  status: SourceStatus
+}
+
+export const SOURCES: Record<string, Source> = {
+  HCT_FLIGHT: {
+    id: 'HCT_FLIGHT',
+    title: 'Kunz et al., BMC Hematology 2017;17:12',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5590186',
+    says: 'Red cell count, hemoglobin and hematocrit were higher during ISS flight than before flight (hematocrit about +10 to +12%). Values returned to pre-flight within 30 days of landing.',
+    status: 'partial',
+  },
+  HCT_REF: {
+    id: 'HCT_REF',
+    title: 'NASA OSDR dataset OSD-569 (Inspiration4 complete blood count)',
+    url: 'https://osdr.nasa.gov/bio/repo/data/studies/OSD-569',
+    says: 'Real pre/post-flight blood counts for 4 private astronauts, with the lab reference ranges used here: hematocrit 38.5-50% and 35-45%.',
+    status: 'verified',
+  },
+  IMMUNE_WBC: {
+    id: 'IMMUNE_WBC',
+    title: 'Immune system alterations during 6-month ISS flight, npj Microgravity 2015',
+    url: 'https://link.springer.com/content/pdf/10.1038/npjmgrav.2015.13.pdf',
+    says: 'Blood from 23 astronauts was taken before, during and after 6-month ISS missions. White cell count was raised during flight. Other reports find lymphocyte counts unchanged or lower.',
+    status: 'partial',
+  },
+  IMMUNE_DEMO: {
+    id: 'IMMUNE_DEMO',
+    title: 'Demo parameter: white cells 40% above, or lymphocytes 40% below, own pre-flight value',
+    says: 'No published in-flight action level found. Chosen so that the published direction of change (a rise) stays green.',
+    status: 'demo',
+  },
+  VITD_NASA: {
+    id: 'VITD_NASA',
+    title: 'NASA flight surgeon vitamin D protocol (Tarver, NTRS 20130013531)',
+    url: 'https://ntrs.nasa.gov/citations/20130013531',
+    says: 'Defines deficiency as 25-hydroxyvitamin D below 20 ng/mL and insufficiency as 20 to 30 ng/mL, and notes astronauts get no sunlight aboard the ISS.',
+    status: 'partial',
+  },
+  VITD_FLIGHT: {
+    id: 'VITD_FLIGHT',
+    title: 'Rice, Zwart and Smith, vitamin D in real and simulated weightlessness (NTRS 20080026180); Smith et al. 2005, ISS nutritional status',
+    url: 'https://ntrs.nasa.gov/api/citations/20080026180/downloads/20080026180.pdf',
+    says: 'In 11 ISS astronauts taking vitamin D supplements, 25-hydroxyvitamin D was about 25% lower after 4-6 month flights than before.',
+    status: 'partial',
+  },
+  MASS: {
+    id: 'MASS',
+    title: 'Demo parameter: body mass more than 5% below own pre-flight value',
+    says: 'No published in-flight action level found.',
+    status: 'demo',
+  },
+  HCT_HIGH: {
+    id: 'HCT_HIGH',
+    title: 'Demo parameter: hematocrit more than 20% above own pre-flight value',
+    says: 'No published in-flight action level found. Chosen so that the published +10-12% shift stays green.',
+    status: 'demo',
+  },
+  ONSD_REVIEW: {
+    id: 'ONSD_REVIEW',
+    title: 'Optic nerve sheath diameter and spaceflight (npj Microgravity 2022) + NASA NTRS report',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9537149/',
+    says: 'Measurement methods are not standardised. A NASA report notes over half of US astronauts already measure above 6.0 mm before launch, so the Earth cut-off does not fit crews.',
+    status: 'partial',
+  },
+  ONSD_CHANGE: {
+    id: 'ONSD_CHANGE',
+    title: 'Demo parameter: sheath diameter 0.5 mm above own pre-flight value',
+    says: 'No validated change-from-baseline threshold found. The 5.8 / 6.2 mm and 0.8 mm figures in our old notes have no source.',
+    status: 'demo',
+  },
+  IJV_STUDY: {
+    id: 'IJV_STUDY',
+    title: 'Marshall-Goebel et al., JAMA Network Open 2019;2(11):e1915011',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6902784/',
+    says: '11 ISS crew. 6 had stagnant or backward flow in the left neck vein around flight day 50. 1 had a blocking clot. Lower body negative pressure improved flow in 10 of 17 sessions.',
+    status: 'verified',
+  },
+  IJV_CASE: {
+    id: 'IJV_CASE',
+    title: 'Aunon-Chancellor et al., N Engl J Med 2020 (clot found in flight)',
+    url: 'https://www.lsuhsc.edu/newsroom/1ST%20Reported%20Occurrence%20and%20Treatment%20of%20Spaceflight%20Medical%20Risk.html',
+    says: 'A neck-vein clot was found by routine research ultrasound about 2 months into a mission, with no symptoms. Treatment was directed by doctors on Earth.',
+    status: 'verified',
+  },
+  CO2_LIMIT: {
+    id: 'CO2_LIMIT',
+    title: 'NASA OCHMO technical brief TB-004, Carbon Dioxide (NASA-STD-3001 Vol 2)',
+    url: 'https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-004-carbon-dioxide.pdf',
+    says: 'Cabin CO2 must stay at or below 3 mmHg as a 1-hour average. Older limits were 3.8-7.5 mmHg.',
+    status: 'verified',
+  },
+  CO2_HEADACHE: {
+    id: 'CO2_HEADACHE',
+    title: 'Law et al., J Occup Environ Med 2014 (ISS CO2 and headaches)',
+    url: 'https://sciencedaily.com/releases/2014/05/140501100922.htm',
+    says: 'Each 1 mmHg rise in CO2 doubled the odds of a reported headache. Keeping the 7-day average under 2.5 mmHg would keep headache risk under 1%.',
+    status: 'verified',
+  },
+  RAD_RATE: {
+    id: 'RAD_RATE',
+    title: 'Zeitlin et al., Science 2013;340:1080 (Curiosity RAD, cruise to Mars)',
+    url: 'https://www.swri.org/press-release/swri-led-team-calculates-radiation-exposure-associated-trip-mars',
+    says: 'Average dose equivalent inside the spacecraft was about 1.8 mSv per day. A round trip would be about 0.66 Sv.',
+    status: 'verified',
+  },
+  RAD_MOON: {
+    id: 'RAD_MOON',
+    title: "Zhang et al., Science Advances 2020;6(39):eaaz1334 (Chang'E-4, lunar surface)",
+    url: 'https://www.science.org/doi/10.1126/sciadv.aaz1334',
+    says: 'The first and so far only direct measurement on the lunar surface: an average dose equivalent of 1,369 microsievert a day, about 1.37 mSv. Measured in lunar daytime inside a lightly shielded lander, so a habitat could differ.',
+    status: 'verified',
+  },
+  RAD_ISS: {
+    id: 'RAD_ISS',
+    title: 'ISS dose equivalent: DOSIS 3D (Zhang et al. 2020) and the ESA Active Dosimeter (2024)',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10919969/',
+    says: 'Three peer-reviewed measurements agree: 731 microsievert a day (DOSIS 3D), 758 plus or minus 24 (ESA Active Dosimeter, June 2017, with 620 in the Columbus module), and a review giving 0.5 to 1 mSv a day depending on solar activity and shielding. We use 0.73.',
+    status: 'verified',
+  },
+  GRAVITY_PARTIAL: {
+    id: 'GRAVITY_PARTIAL',
+    title: 'Lee et al., Venous and arterial responses to partial gravity, Frontiers in Physiology 2020',
+    url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7399573/',
+    says: 'In parabolic flights, the neck vein grew wider step by step as gravity fell: 12 square mm seated in Earth gravity, 68 at a quarter of Earth gravity, 103 lying flat. Moon gravity (one sixth) was not tested, and how much gravity is enough to pull fluid back down is still an open question.',
+    status: 'partial',
+  },
+  GRAVITY_DEMO: {
+    id: 'GRAVITY_DEMO',
+    title: 'Demo parameter: the Moon setting applies 60% of the weightless fluid shift',
+    says: 'Taken from the quarter-gravity result above (about 60% of the way from sitting to lying flat). Nobody has measured a long stay in Moon gravity, so this is an assumption for the simulation only.',
+    status: 'demo',
+  },
+  RAD_LIMIT: {
+    id: 'RAD_LIMIT',
+    title: 'NASA OCHMO radiation protection brief (NASA-STD-3001 Vol 1)',
+    url: 'https://www.nasa.gov/sites/default/files/atoms/files/radiation_protection_technical_brief_ochmo.pdf',
+    says: 'Career limit for an astronaut is 600 mSv effective dose, the same for every age and sex.',
+    status: 'verified',
+  },
+  RAD_WATCH: {
+    id: 'RAD_WATCH',
+    title: 'Demo parameter: amber at 50% of the career limit, red at 100%',
+    says: 'The 600 mSv limit is real. The 50% early-warning step is our own choice.',
+    status: 'demo',
+  },
+  SLEEP: {
+    id: 'SLEEP',
+    title: 'Demo parameter: 7-day average sleep under 6 hours',
+    says: 'ISS crews are reported to sleep about 6 hours a night (Barger et al., Lancet Neurology 2014; not re-checked by us yet). The 6 hour line is our own choice.',
+    status: 'demo',
+  },
+  URINE_TARGET: {
+    id: 'URINE_TARGET',
+    title: 'NASA renal stone studies: urine output target of 2 L a day or more',
+    url: 'https://ntrs.nasa.gov/citations/19970003315',
+    says: 'NASA papers advise enough fluid to pass at least 2 litres of urine a day (later documents say 2.0 to 2.5) to keep stone-forming salts dissolved.',
+    status: 'partial',
+  },
+  URINE_RISK: {
+    id: 'URINE_RISK',
+    title: 'NASA risk report: renal stone formation in spaceflight',
+    url: 'https://ntrs.nasa.gov/api/citations/20170004709/downloads/20170004709.pdf',
+    says: 'The main causes in space are extra calcium in the urine from bone loss, and low urine volume.',
+    status: 'partial',
+  },
+  BONE_LOSS: {
+    id: 'BONE_LOSS',
+    title: 'NASA Human Research Program: Risk of Spaceflight-Induced Bone Changes',
+    url: 'https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/',
+    says: 'Before modern resistance devices, crews on 4 to 6 month missions lost about 1 to 1.5% of bone density a month at the hip and spine. Resistance exercise reduces the loss but does not remove it. NASA states the same figure and notes that bone is scanned only before and after flight.',
+    status: 'verified',
+  },
+  EXERCISE_PLAN: {
+    id: 'EXERCISE_PLAN',
+    title: 'Demo parameter: at least 5 resistance sessions a week in flight',
+    says: 'ISS crews exercise most days, but we have not confirmed the exact prescription in a NASA document. The cut-off is our own choice.',
+    status: 'demo',
+  },
+  HAZARDS: {
+    id: 'HAZARDS',
+    title: 'NASA Human Research Program: the five hazards of human spaceflight',
+    url: 'https://www.nasa.gov/hrp/hazards/',
+    says: 'Space radiation, isolation and confinement, distance from Earth, gravity fields, and hostile closed environments.',
+    status: 'verified',
+  },
+  MOOD: {
+    id: 'MOOD',
+    title: 'Demo parameter: 7-day mood average under 2.5 out of 5',
+    says: 'Mood is one of the indicators the challenge names. The scale and the cut-off are our own choice.',
+    status: 'demo',
+  },
+  BASICS: {
+    id: 'BASICS',
+    title: 'Demo parameter: ordinary Earth clinical limits for blood pressure, temperature and blood sugar',
+    says: 'Fever from 38.0 C, blood pressure high from 140/90 and low under 90, blood sugar low under 70 and high over 180 mg/dL. Common clinical conventions, not yet tied to a cited guideline, and not space-specific.',
+    status: 'demo',
+  },
+  VITALS: {
+    id: 'VITALS',
+    title: 'Demo parameter: general clinical convention for oxygen level and resting heart rate',
+    says: 'Oxygen saturation under 94% (amber) or under 90% (red); resting heart rate over 100. Not space-specific and not yet tied to a cited guideline.',
+    status: 'demo',
+  },
+  // --- The five hazard situations (scenario menu, "NASA space hazards"). ---
+  HRP_RADIATION: {
+    id: 'HRP_RADIATION',
+    title: 'NASA Human Research Program: Hazard 1, space radiation',
+    url: 'https://www.nasa.gov/hrp/hazard-space-radiation/',
+    says: 'Galactic cosmic rays and solar particle events reach crews outside Earth\'s magnetic field. Radiation raises cancer risk and can affect the nervous system, thinking and behaviour. NASA monitors crew exposure continuously.',
+    status: 'verified',
+  },
+  HRP_ISOLATION: {
+    id: 'HRP_ISOLATION',
+    title: 'NASA Human Research Program: Hazard 2, isolation and confinement',
+    url: 'https://www.nasa.gov/hrp/hazard-isolation-and-confinement/',
+    says: 'Sleep loss, a shifted body clock and overwork in isolation can lower performance and health. Light therapy is used to align the body clock and keep crews alert; journaling helps track mood.',
+    status: 'verified',
+  },
+  HRP_DISTANCE: {
+    id: 'HRP_DISTANCE',
+    title: 'NASA Human Research Program: Hazard 3, distance from Earth',
+    url: 'https://www.nasa.gov/hrp/hazard-distance-from-earth/',
+    says: 'Mars is on average 140 million miles away, and messages take up to 20 minutes each way. Planning and self-sufficiency are key: crews must handle many situations, including medical ones, with little help from Earth.',
+    status: 'verified',
+  },
+  HRP_GRAVITY: {
+    id: 'HRP_GRAVITY',
+    title: 'NASA Human Research Program: Hazard 4, gravity fields',
+    url: 'https://www.nasa.gov/hrp/hazard-gravity-fields/',
+    says: 'Moving between gravity levels affects balance, orientation and coordination. Moving from weightlessness into gravity can cause lightheadedness and fainting. Weight-bearing bones lose 1% to 1.5% of mineral density a month, and kidney stone risk rises.',
+    status: 'verified',
+  },
+  HRP_CLOSED: {
+    id: 'HRP_CLOSED',
+    title: 'NASA Human Research Program: Hazard 5, hostile and closed environments',
+    url: 'https://www.nasa.gov/hrp/hazard-hostile-closed-environments/',
+    says: 'The spacecraft is both home and machine. Temperature, pressure, lighting, noise and microbes must be kept safe, and microbes spread more easily between people in a closed habitat.',
+    status: 'verified',
+  },
+  CSA_RADIATION: {
+    id: 'CSA_RADIATION',
+    title: 'Canadian Space Agency: Monitoring radiation for astronaut health (2026)',
+    url: 'https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp',
+    says: 'Neutrons make up about 30% of the radiation on the ISS. Canada measured them with bubble detectors and other station experiments, and is developing CANS, a compact neutron spectrometer that runs on its own.',
+    status: 'verified',
+  },
+  CSA_WHY: {
+    id: 'CSA_WHY',
+    title: 'Canadian Space Agency: Why do we conduct science experiments in space?',
+    url: 'https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp',
+    says: 'Moon and Mars missions mean more time in weightlessness, more radiation, longer isolation, communication delays and less help from Earth with supplies and medical care.',
+    status: 'verified',
+  },
+  ARTEMIS_SHELTER: {
+    id: 'ARTEMIS_SHELTER',
+    title: 'NASA Science: To protect Artemis II astronauts, NASA experts keep eyes on Sun (2026)',
+    url: 'https://science.nasa.gov/missions/artemis/artemis-2/to-protect-artemis-ii-astronauts-nasa-experts-keep-eyes-on-sun/',
+    says: 'Crews wear active dosimeters, and Orion sounds an alarm when radiation rises. A first threshold means caution and closer monitoring; a higher one triggers a recommendation to take shelter. Crews build the shelter by moving stowed equipment to add mass around them.',
+    status: 'verified',
+  },
+  ARTEMIS1_SHELTER: {
+    id: 'ARTEMIS1_SHELTER',
+    title: 'DLR: Orion radiation protection tested, first Artemis I results (2024, Nature paper)',
+    url: 'https://www.dlr.de/en/latest/news/2024/orion-spacecraft-radiation-protection-tested-initial-findings-from-artemis-i-moon-mission',
+    says: 'Dose rates in the most and least protected parts of Orion differed by a factor of four. In the storm shelter the dose from a large solar particle event can be kept low enough that no acute radiation sickness is expected.',
+    status: 'verified',
+  },
+  SRAG: {
+    id: 'SRAG',
+    title: 'NASA: Space Radiation Analysis Group (Human Health and Performance)',
+    url: 'https://www.nasa.gov/directorates/esdmd/hhp/space-radiation/',
+    says: 'NASA\'s Space Radiation Analysis Group watches solar radiation 24 hours a day, every day of the year, and supports flight operations to keep crew exposure within acceptable risk.',
+    status: 'verified',
+  },
+  STORM_DEMO: {
+    id: 'STORM_DEMO',
+    title: 'Demo parameter: caution at 5 times, shelter at 20 times the normal dose rate',
+    says: 'NASA uses a caution level and a higher shelter level, but the page does not publish the numbers. These multiples, the storm size and the shelter factor of four (from Artemis I) are our demo values.',
+    status: 'demo',
+  },
+  MARS_CONJUNCTION: {
+    id: 'MARS_CONJUNCTION',
+    title: "NASA: NASA's Mars fleet will still conduct science while lying low (2023)",
+    url: 'https://www.nasa.gov/solar-system/planets/mars/nasas-mars-fleet-will-still-conduct-science-while-lying-low/',
+    says: 'Every two years Mars passes behind the Sun as seen from Earth. NASA stops sending commands for about two weeks, and pending data is sent once contact returns.',
+    status: 'verified',
+  },
+  ORTHO_NASA: {
+    id: 'ORTHO_NASA',
+    title: 'NASA Cardiovascular and Vision Laboratory',
+    url: 'https://www.nasa.gov/directorates/esdmd/hhp/cardiovascular-and-vision/',
+    says: 'More than 60% of astronauts can be affected by orthostatic intolerance (lightheadedness or fainting on standing) back in gravity if no countermeasures are used; female crew members are more susceptible. Countermeasures include compression garments and fluid loading.',
+    status: 'verified',
+  },
+  ORTHO_COUNTER: {
+    id: 'ORTHO_COUNTER',
+    title: 'Lee et al., NASA (NTRS 20160013631): compression garments against post-flight orthostatic intolerance',
+    url: 'https://ntrs.nasa.gov/citations/20160013631',
+    says: 'Current countermeasures include fluid loading before and cooling during re-entry, and compression garments worn during and for up to several days after landing.',
+    status: 'verified',
+  },
+  PILOTING: {
+    id: 'PILOTING',
+    title: 'NASA ongoing research: Simulating Manual Piloting for Moon Landings',
+    url: 'https://www.nasa.gov/reference/simulating-manual-piloting-for-moon-landings/',
+    says: 'Tests how gravity changes affect astronauts\' piloting and decision-making for Moon landings, with balance and thinking tests before, during and after flight.',
+    status: 'verified',
+  },
+  SENSORIMOTOR: {
+    id: 'SENSORIMOTOR',
+    title: 'NASA Human Research Program: Risk of Altered Sensorimotor and Vestibular Function',
+    url: 'https://www.nasa.gov/reference/risk-of-altered-sensorimotor-and-vestibular-function/',
+    says: 'Gravity changes can cause motion sickness, dizziness and coordination problems.',
+    status: 'verified',
+  },
+  SLEEP_RISK: {
+    id: 'SLEEP_RISK',
+    title: 'NASA Human Research Program: Risk from Inadequate Sleep and Irregular Schedules',
+    url: 'https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/',
+    says: 'Station LEDs copy Earth\'s light-dark cycle to help crews sleep, and schedules include set times for relaxation and self-care.',
+    status: 'verified',
+  },
+  BEHAVIOR_RISK: {
+    id: 'BEHAVIOR_RISK',
+    title: 'NASA Human Research Program: Risk of Behavioral Conditions and Psychiatric Disorders',
+    url: 'https://www.nasa.gov/reference/risk-of-behavioral-conditions-and-psychiatric-disorders/',
+    says: 'Crews can talk with family and medical professionals for support. NASA encourages self-care such as a regular journal; windows and growing plants help against monotony and confinement.',
+    status: 'verified',
+  },
+  ARCHER: {
+    id: 'ARCHER',
+    title: 'NASA ongoing research: ARCHeR (Artemis II)',
+    url: 'https://www.nasa.gov/reference/archer/',
+    says: 'Monitors astronauts\' well-being, activity and sleep to learn about health and performance in deep space.',
+    status: 'verified',
+  },
+}

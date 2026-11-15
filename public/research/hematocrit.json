@@ -1,0 +1,67 @@
+{
+  "total": 16,
+  "nextOffset": 1,
+  "sources": [
+    {
+      "studyId": "OSD-569",
+      "sourceFile": "LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+      "sha256": "32e4f9c97d3b636b5d5c2e72dab8c4d3319dee64c437508b092dad04603b2b8f",
+      "studyUrl": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-569",
+      "sourceUrl": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-569/download?source=datamanager&file=LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+      "sourceType": "NASA_HUMAN",
+      "species": "Homo sapiens",
+      "reuseTermsUrl": "https://science.nasa.gov/reference/osdr-help-terms-and-conditions/",
+      "intendedUse": "descriptive research",
+      "sourceUpdatedAt": null,
+      "retrievedAt": null,
+      "status": "available",
+      "count": 560,
+      "quality": {
+        "accepted": 525,
+        "unit_unverified": 28,
+        "missing": 7
+      }
+    }
+  ],
+  "observations": [
+    {
+      "observationId": "OSD-569:LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv:C001_whole-blood_R+1_cbc:hematocrit_value_percent",
+      "studyId": "OSD-569",
+      "sourceFile": "LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+      "sha256": "32e4f9c97d3b636b5d5c2e72dab8c4d3319dee64c437508b092dad04603b2b8f",
+      "studyUrl": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-569",
+      "sourceUrl": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-569/download?source=datamanager&file=LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+      "sourceType": "NASA_HUMAN",
+      "species": "Homo sapiens",
+      "reuseTermsUrl": "https://science.nasa.gov/reference/osdr-help-terms-and-conditions/",
+      "intendedUse": "descriptive research",
+      "sourceUpdatedAt": null,
+      "retrievedAt": null,
+      "sampleId": "C001_whole-blood_R+1_cbc",
+      "subjectId": "C001",
+      "specimen": "whole-blood",
+      "studyGroup": null,
+      "measurement": "hematocrit",
+      "sourceColumn": "hematocrit_value_percent",
+      "value": 43.6,
+      "unit": "percent",
+      "timepoint": "R+1",
+      "phase": "postflight",
+      "relativeDay": 1,
+      "timestamp": null,
+      "anatomicalSystem": "cardiovascular",
+      "qualityStatus": "accepted",
+      "qualityNote": null,
+      "rawValue": "43.6",
+      "referenceLow": 38.5,
+      "referenceHigh": 50,
+      "isSynthetic": false,
+      "comparison": {
+        "baselineN": 3,
+        "baselineMedian": 44.5,
+        "absoluteChange": -0.8999999999999986,
+        "percentChange": -2.0224719101123565
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "features": ["restingHrBpm", "systolicBp", "diastolicBp", "spo2Pct", "sleepHours7d", "bodyTempC"],
+  "seeds": {"train": 1418, "validation": 9281, "test": 21964},
+  "subjects": {"train": 90, "validation": 60, "test": 90},
+  "days": 80,
+  "baselineDays": 14,
+  "rollingDays": 14,
+  "estimators": 128
+}

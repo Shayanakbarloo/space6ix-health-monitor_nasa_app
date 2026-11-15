@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Light, airy look: soft blue-white background, white rounded cards with soft shadows,
+   black round icon badges. Status colours: green = normal, amber = check, red = urgent. */
+@theme {
+  --font-sans: "Geist Variable", system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --color-ground: #f3f6fb;
+  --color-bar: #f7f9fd;
+  --color-panel: #ffffff;
+  --color-raised: #eef1f6;
+  --color-line: #e6eaf1;
+  --color-line-soft: #eff2f7;
+  --color-line-strong: #d5dbe5;
+  --color-ink: #14161b;
+  --color-muted: #5d6471;
+  --color-dim: #858c99;
+  --color-accent: #2f7bf6;
+  --color-accent-bg: #dde9fb;
+  --color-ok: #15803d;
+  --color-ok-bg: #dcf5e5;
+  --color-check: #9a6400;
+  --color-check-bg: #fbf3c4;
+  --color-urgent: #d92d3f;
+  --color-urgent-bg: #fde4e6;
+  --color-sim: #5d6471;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.6rem;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background:
+    radial-gradient(1100px 700px at 0% 0%, #c6d9f8 0%, transparent 60%),
+    radial-gradient(900px 650px at 100% 100%, #d5e3fb 0%, transparent 58%),
+    var(--color-ground);
+  background-attachment: fixed;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cards float on the background with a soft blue-grey shadow. */
+.bg-panel.rounded-2xl { box-shadow: 0 18px 44px -24px rgba(30, 64, 130, 0.22), 0 1px 2px rgba(30, 64, 130, 0.05); }
+
+button { cursor: pointer; }
+button:disabled { cursor: default; }
+:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+
+/* Every button gives a physical press response. */
+.press { transition: transform 120ms var(--ease-out-expo), background-color 160ms, border-color 160ms, color 160ms; }
+.press:active:not(:disabled) { transform: scale(0.97); }
+
+/* Body-scan marker. Flagged markers pulse; normal ones stay still. */
+.marker-ring { animation: marker-pulse 1.8s var(--ease-out-expo) infinite; }
+@keyframes marker-pulse {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+input[type="range"].day-range { appearance: none; height: 28px; background: transparent; cursor: ew-resize; }
+input[type="range"].day-range::-webkit-slider-runnable-track { height: 2px; background: var(--color-line-strong); }
+input[type="range"].day-range::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; margin-top: -8px; border-radius: 999px; background: var(--color-ink); border: 3px solid var(--color-ground); transition: transform 120ms; }
+input[type="range"].day-range:active::-webkit-slider-thumb { transform: scale(1.25); }
+input[type="range"].day-range::-moz-range-track { height: 2px; background: var(--color-line-strong); }
+input[type="range"].day-range::-moz-range-thumb { width: 14px; height: 14px; border-radius: 999px; background: var(--color-ink); border: 3px solid var(--color-ground); }
+
+@media (prefers-reduced-motion: reduce) {
+  .marker-ring { animation: none; opacity: 0.5; transform: scale(1.6); }
+  .press { transition: none; }
+}
+
+/* Quiet scrollbars inside panels. */
+* { scrollbar-width: thin; scrollbar-color: var(--color-line-strong) transparent; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
