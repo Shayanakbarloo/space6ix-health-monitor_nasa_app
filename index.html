@@ -2,9 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- viewport-fit=cover lets the app reach under the notch and the home bar;
+         index.css pads the content back out of their way. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Health monitoring for a crew far from Earth." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Installable phone app -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#f7f9fd" />
+
+    <!-- iPhone needs its own tags; it ignores most of the manifest -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SOMA" />
     <title>SOMA: Spaceflight Organ Monitoring Application</title>
   </head>
   <body>

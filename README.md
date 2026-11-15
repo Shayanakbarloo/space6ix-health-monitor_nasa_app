@@ -8,6 +8,8 @@ Health monitoring for a crew that cannot call a doctor. Built for the NASA Space
 
 **Live demo: https://space6ix-health-monitor.vercel.app**
 
+**Put it on a phone like an app:** on iPhone, open the link in Safari, tap Share, then **Add to Home Screen**. On Android, open it in Chrome, tap the menu, then **Install app**. On a computer, click the install icon in Chrome's or Edge's address bar. SOMA then opens full screen with its own icon, and after the first visit it also starts without a connection.
+
 ![Live monitor in the Emergency scenario: Khamosh Mehta's neck vein flagged as urgent, live vitals on the left, the signal explained on the right](docs/signal-detail.png)
 
 ## The problem

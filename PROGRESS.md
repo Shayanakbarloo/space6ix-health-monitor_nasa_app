@@ -206,3 +206,9 @@ marked "demo only" are our wording. The database keeps test messages from develo
 ## Session 22 (2026-11-15)
 - The app is now called **SOMA: Spaceflight Organ Monitoring Application** (Stephen's request): browser tab title, header (SOMA with the full name under it), sign-in page, logo label, README and docs. Ask answers "what does SOMA stand for?". The npm package name is `soma`.
 - README screenshots retaken with the new name.
+
+## Session 23 (2026-11-15)
+- SOMA installs on a phone like an app, the same way as Stephen's My Accountant app: `public/manifest.webmanifest` (name, icon, full-screen), phone icons (`public/icon-192.png`, `icon-512.png`, `icon-maskable-512.png`), iPhone tags in `index.html`, and a service worker (`public/sw.js`, network first with a saved copy as fallback, `/api/` never saved) registered in `src/main.tsx` for the built app only. After the first visit it starts offline.
+- Safe areas: the page keeps clear of the notch and the home bar. Text boxes are 16 px on phones so iPhone does not zoom in when you tap one.
+- Ask explains how to put SOMA on a phone. README has the steps.
+- Tested in Chrome: the manifest and icons load, the service worker runs, Chrome reports no install problems, and with the website switched off the app still opens and Ask still answers.

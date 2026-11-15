@@ -39,6 +39,17 @@ body {
   font-family: var(--font-sans);
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
+  /* Keep content clear of the notch and the home bar when opened as a phone app. */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* Phones zoom in on text boxes smaller than 16px; this keeps the page still when you tap one. */
+@media (max-width: 640px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
 
 /* Cards float on the background with a soft blue-grey shadow. */

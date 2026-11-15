@@ -95,6 +95,11 @@ describe('Ask: knowledge from NASA and CSA', () => {
     expect(first('who can see my data', ctxFor('normal')).lead).toContain('whole crew')
   })
 
+  it('explains how to put SOMA on a phone', () => {
+    expect(first('how do I install it on my phone?', ctxFor('normal')).topic).toBe('app:install')
+    expect(first('add to home screen', ctxFor('normal')).topic).toBe('app:install')
+  })
+
   it('says what SOMA stands for', () => {
     expect(first('what does SOMA stand for?', ctxFor('normal')).lead).toBe('SOMA stands for Spaceflight Organ Monitoring Application.')
     expect(first('how does ask work offline', ctxFor('normal')).topic).toBe('app:about')

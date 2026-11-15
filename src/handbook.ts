@@ -79,6 +79,7 @@ const PHRASES: [RegExp, string][] = [
   [/blood\s*sugar|glucose/g, 'sugar'],
   [/mission\s*control/g, 'earth'],
   [/pre[\s-]?plan/g, 'preplan'],
+  [/home\s*screen/g, 'homescreen'],
   [/loss\s*of\s*signal/g, 'blackout'],
   [/flight\s*surgeons?/g, 'surgeon'],
   [/contact\s*home/g, 'contacthome'],
@@ -621,6 +622,9 @@ function buildEntries(ctx: AskContext): Entry[] {
   const app = (topic: string, keys: string[], title: string, lead: string, lines: string[], sources: Link[] = []) =>
     list.push({ topic: `app:${topic}`, family: `app:${topic}`, keys: keyset(keys), serves: ['explain'], build: () => ({ topic: `app:${topic}`, title, lead, lines, sources }) })
 
+  app('install', ['install', 'homescreen', 'download', 'iphone', 'android', 'phone app'], 'Putting SOMA on a phone',
+    'SOMA can sit on your phone like an app, with its own icon.',
+    ['iPhone: open the SOMA link in Safari, tap Share, then Add to Home Screen.', 'Android: open the link in Chrome, tap the menu, then Install app (or Add to Home screen).', 'Computer: in Chrome or Edge, click the install icon in the address bar.', 'Once it has been opened, it also starts without a connection.'])
   app('soma', ['soma', 'acronym'], 'About SOMA',
     'SOMA stands for Spaceflight Organ Monitoring Application.',
     ['It watches the health of a crew far from Earth: live readings, the body and its organs, what to do next, and contact with the flight surgeon.', 'It runs on board and keeps working without a connection to Earth.'])
