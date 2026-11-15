@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { PaperPlaneTilt, Sparkle } from '@phosphor-icons/react'
+import { Microphone, PaperPlaneTilt, Sparkle, Stop } from '@phosphor-icons/react'
 import { ask, suggestions, type Answer } from './handbook'
+import { useDictation } from './speech'
 import type { MissionId } from './data/missions'
 import type { ScenarioId } from './live'
 import type { Subject } from './model'
@@ -55,6 +56,8 @@ export default function Ask({ subjects, meId, day, mission, scenario }: { subjec
   }
 
   const ideas = suggestions({ scenario, subjects })
+  // Speak a question: the words show in the box, and it is asked when you stop talking.
+  const voice = useDictation((text) => submit(text))
 
   return (
     <div className="mx-auto max-w-[860px] px-4 py-4 sm:px-6">
@@ -67,7 +70,7 @@ export default function Ask({ subjects, meId, day, mission, scenario }: { subjec
             Ask
           </h1>
           <p className="mt-1.5 text-sm text-muted">
-            Ask about the crew, a reading, NASA's space hazards or what to do. It knows everyone's live readings and the situation right now, works without a connection to Earth, and shows where each answer comes from.
+            Ask about the crew, a reading, NASA's space hazards or what to do. It knows everyone's live readings and the situation right now, works without a connection to Earth, and shows where each answer comes from. Type a question, or tap the microphone and say it.
           </p>
           {canReword && (
             <label className="mt-3 flex min-h-11 w-fit items-center gap-2 rounded-xl border border-line-strong px-3 text-sm">
@@ -141,21 +144,40 @@ export default function Ask({ subjects, meId, day, mission, scenario }: { subjec
             e.preventDefault()
             submit(draft)
           }}
-          className="flex gap-3 border-t border-line p-4"
+          className="border-t border-line p-4"
         >
-          <label className="flex-1">
-            <span className="sr-only">Your question</span>
-            <input
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              placeholder="Ask about the crew, a reading, a hazard or what to do"
-              className="min-h-11 w-full rounded-xl border border-line-strong bg-ground px-3 text-sm text-ink placeholder:text-dim focus:border-ink"
-            />
-          </label>
-          <Button kind="primary" type="submit" disabled={!draft.trim()}>
-            <PaperPlaneTilt size={18} />
-            Ask
-          </Button>
+          <div className="flex gap-2 sm:gap-3">
+            <label className="flex-1">
+              <span className="sr-only">Your question</span>
+              <input
+                value={voice.listening ? voice.heard : draft}
+                onChange={(e) => setDraft(e.target.value)}
+                readOnly={voice.listening}
+                placeholder={voice.listening ? 'Listening... ask your question' : 'Ask about the crew, a reading, a hazard or what to do'}
+                className={`min-h-11 w-full rounded-xl border bg-ground px-3 text-sm text-ink placeholder:text-dim focus:border-ink ${voice.listening ? 'border-urgent/50' : 'border-line-strong'}`}
+              />
+            </label>
+            <button
+              type="button"
+              onClick={voice.listening ? voice.stop : voice.start}
+              aria-pressed={voice.listening}
+              aria-label={voice.listening ? 'Stop listening' : 'Speak your question'}
+              title={voice.listening ? 'Stop listening' : 'Speak your question'}
+              className={`press relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border ${voice.listening ? 'border-urgent bg-urgent text-white' : 'border-line-strong bg-panel text-ink hover:border-muted'}`}
+            >
+              {voice.listening && <span aria-hidden="true" className="absolute inset-0 animate-ping rounded-full bg-urgent/40" />}
+              {voice.listening ? <Stop size={18} weight="fill" className="relative" /> : <Microphone size={20} className="relative" />}
+            </button>
+            <Button kind="primary" type="submit" disabled={voice.listening || !draft.trim()}>
+              <PaperPlaneTilt size={18} />
+              Ask
+            </Button>
+          </div>
+          {(voice.listening || voice.error) && (
+            <p role="status" className={`mt-2 text-xs ${voice.error ? 'text-check' : 'text-muted'}`}>
+              {voice.error ?? 'Listening. Speak, then stop talking and the question is asked. Tap the red button to stop.'}
+            </p>
+          )}
         </form>
       </section>
     </div>
