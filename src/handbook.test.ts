@@ -95,6 +95,11 @@ describe('Ask: knowledge from NASA and CSA', () => {
     expect(first('who can see my data', ctxFor('normal')).lead).toContain('whole crew')
   })
 
+  it('says what SOMA stands for', () => {
+    expect(first('what does SOMA stand for?', ctxFor('normal')).lead).toBe('SOMA stands for Spaceflight Organ Monitoring Application.')
+    expect(first('how does ask work offline', ctxFor('normal')).topic).toBe('app:about')
+  })
+
   it('explains how to plan a 90-minute blackout with the flight surgeon', () => {
     for (const q of ['what do we do during a blackout', 'how do we pre-plan with the flight surgeon', 'what happens during loss of signal']) {
       const a = first(q, ctxFor('normal'))

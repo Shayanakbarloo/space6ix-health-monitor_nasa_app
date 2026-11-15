@@ -199,3 +199,10 @@ marked "demo only" are our wording. The database keeps test messages from develo
 - New logo from Stephen's logo sheet (a planet with an orbit ring and a pin), traced to a vector path so it stays sharp at any size: in the header with the name "Crew Health Monitor", on the sign-in page, as the browser tab icon (white on a dark rounded square, `public/favicon.svg`), as the phone home-screen icon (`public/apple-touch-icon.png`) and at the top of the README (`docs/logo.svg`). The path is `LOGO_PATH` in `src/ui.tsx`.
 - Sign-in: every crew account says "Sees the whole crew's health".
 - README screenshots retaken with the new logo.
+
+## Session 21 (2026-11-15)
+- Ask has a microphone button (Stephen's request): tap it and say the question; the words show in the box while you speak and the question is asked when you stop (tap the red stop button to finish early). Uses the browser's own speech recognition (`src/speech.ts`): Chrome, Edge and Safari; in Chrome it needs internet, and the app tells you when the microphone is blocked, missing, offline or not supported. No audio is recorded or kept by the app. Tested with a stand-in recognizer: speaking, stopping early, blocked microphone, unsupported browser, phone width.
+
+## Session 22 (2026-11-15)
+- The app is now called **SOMA: Spaceflight Organ Monitoring Application** (Stephen's request): browser tab title, header (SOMA with the full name under it), sign-in page, logo label, README and docs. Ask answers "what does SOMA stand for?". The npm package name is `soma`.
+- README screenshots retaken with the new name.

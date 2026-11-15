@@ -37,8 +37,9 @@ export default function SignIn({ onDone }: { onDone: () => void }) {
         <div className="flex items-center gap-4">
           <Logo size={52} />
           <div>
-            <h1 className="text-xl font-semibold tracking-tight">Crew Health Monitor</h1>
-            <p className="text-sm text-muted">Choose a person to see their health</p>
+            <h1 className="text-2xl font-semibold tracking-[0.06em]">SOMA</h1>
+            <p className="text-sm font-medium text-ink">Spaceflight Organ Monitoring Application</p>
+            <p className="mt-0.5 text-sm text-muted">Choose a person to see their health</p>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
-<img src="docs/logo.svg" alt="Crew Health Monitor logo: a planet with an orbit ring and a pin" width="110">
+<img src="docs/logo.svg" alt="SOMA logo: a planet with an orbit ring and a pin" width="110">
 
-# Crew Health Monitor
+# SOMA: Spaceflight Organ Monitoring Application
 
 Health monitoring for a crew that cannot call a doctor. Built for the NASA Space Apps Challenge 2026, "Create Health Monitoring Software for Astronauts on Space Missions".
 
@@ -20,9 +20,9 @@ On the way to Mars, a question to Earth and its answer can take more than 40 min
 
 ## The idea
 
-Crew Health Monitor checks every reading with rules adapted to spaceflight. Each reading is compared with the person's own pre-flight value and with what is known from past missions, not with the normal ranges on an Earth lab report.
+SOMA checks every reading with rules adapted to spaceflight. Each reading is compared with the person's own pre-flight value and with what is known from past missions, not with the normal ranges on an Earth lab report.
 
-| | An Earth lab report | Crew Health Monitor |
+| | An Earth lab report | SOMA |
 |---|---|---|
 | Normal spaceflight change | False alarm | Explained as expected |
 | Concern that only matters in space | Missed | Flagged, with what to do next |
@@ -178,6 +178,8 @@ An onboard guide that answers questions in plain words. It needs no AI model and
 - **The situation:** "What's happening right now?", "What should we do now?", "Why does this happen?". It knows the scenario being played and its steps.
 - **NASA and CSA knowledge:** the five hazards, the 17 risks, NASA's current studies, and facts with numbers from the challenge's pages and the sources behind the rules (bone loss, SANS, fainting after landing, the Mars delay and solar conjunction, neutrons on the station, the storm shelter, CO2 limits, sleep, mood, kidney stones and more).
 - **The app:** pages, check-ins, Emergency mode, Contact home and its delay, planning a blackout, who can see what.
+
+Tap the microphone next to the question box to say a question instead of typing it. The words appear in the box as you speak, and the question is asked when you stop talking (tap the red button to stop early). The browser turns speech into text: it works in Chrome, Edge and Safari, and in Chrome it uses Google's online speech service, so typing is the way to ask with no internet. The app does not record or keep any audio.
 
 It understands follow-ups ("what should she do?", "why?"), copes with spelling mistakes, and links every answer to where it comes from. When it does not know, it says so and suggests the closest topics instead of guessing. The guide lives in `src/handbook.ts` and is tested in `src/handbook.test.ts`.
 

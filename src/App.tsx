@@ -325,7 +325,10 @@ export default function App() {
 
           <div className="col-start-2 row-start-1 flex items-center gap-3 justify-self-end min-[1140px]:col-start-3">
             <Logo size={36} />
-            <p className="hidden text-[16px] leading-tight font-semibold tracking-tight sm:block">Crew Health Monitor</p>
+            <p className="hidden leading-tight sm:block" title="SOMA: Spaceflight Organ Monitoring Application">
+              <span className="block text-[18px] font-semibold tracking-[0.06em]">SOMA</span>
+              <span className="block text-[11px] text-muted min-[1140px]:hidden min-[1280px]:block">Spaceflight Organ Monitoring Application</span>
+            </p>
           </div>
         </div>
 

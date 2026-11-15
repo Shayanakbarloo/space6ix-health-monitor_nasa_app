@@ -1,6 +1,6 @@
 # Frontend integration
 
-Run from the Crew Health Monitor directory with Node 24 and Python 3.13. Install the Python dependencies once in a virtual environment.
+Run from the SOMA project directory with Node 24 and Python 3.13. Install the Python dependencies once in a virtual environment.
 
 ```powershell
 npm ci

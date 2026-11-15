@@ -621,6 +621,9 @@ function buildEntries(ctx: AskContext): Entry[] {
   const app = (topic: string, keys: string[], title: string, lead: string, lines: string[], sources: Link[] = []) =>
     list.push({ topic: `app:${topic}`, family: `app:${topic}`, keys: keyset(keys), serves: ['explain'], build: () => ({ topic: `app:${topic}`, title, lead, lines, sources }) })
 
+  app('soma', ['soma', 'acronym'], 'About SOMA',
+    'SOMA stands for Spaceflight Organ Monitoring Application.',
+    ['It watches the health of a crew far from Earth: live readings, the body and its organs, what to do next, and contact with the flight surgeon.', 'It runs on board and keeps working without a connection to Earth.'])
   app('pages', ['page', 'tab', 'app', 'menu', 'navigate', 'livemonitor', 'contacthome', 'ask', 'surgeon', 'use'], 'The pages in this app',
     'The app has four pages: Live monitor, Contact home, Ask and Flight surgeon.',
     ['Live monitor: every crew member\'s health right now, the 3D body, live trends and the steps to fix a problem.', 'Contact home: messages and health reports to Earth, with the real signal delay.', 'Ask: questions about the crew, readings, NASA\'s hazards and what to do.', 'Flight surgeon: plan a 90-minute blackout with the flight surgeon, then follow the next step while there is no contact.'])
