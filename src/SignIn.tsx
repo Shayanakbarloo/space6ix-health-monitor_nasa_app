@@ -6,7 +6,7 @@ import type { User } from './data/users'
 import { EASE, Logo } from './ui'
 
 const ROLE_NOTE: Record<User['role'], string> = {
-  crew: 'Sees own health data',
+  crew: "Sees the whole crew's health",
   cmo: "Sees every crew member's data",
   surgeon: 'Sees only what the crew sends to Earth',
 }

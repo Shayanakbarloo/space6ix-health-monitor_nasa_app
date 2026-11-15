@@ -187,3 +187,10 @@ marked "demo only" are our wording. The database keeps test messages from develo
 - Ask explains how to plan a blackout ("what do we do during a blackout?").
 - All README screenshots retaken with the new header, plus three of the Flight surgeon page.
 - 78 tests pass (11 new); a 40-check browser walkthrough of the blackout passes: two tabs with a real approval, one tab with the automatic one, Mars behind the Sun, and a phone-sized screen.
+
+## Session 19 (2026-11-15)
+- Crew renamed (Stephen's request), keeping each person's role, body and pronouns: Shayan Akbarloyshabgahi (crew medical officer, was M. Chen), Khamosh Mehta (flight engineer, was A. Rivera), Tulsi Gandhi (commander, was E. Vance), Roya Alizadeh (science specialist, was S. Jenkins). Code, tests, README and docs updated; Ask finds people by first or last name.
+- Header: the signed-in person is on the left, the logo on the right; the page menu stays centered.
+- Live monitor: each signal row is a box filled with its status colour (green Normal, yellow Check, red Urgent), with a white status chip and a white "Do this next" box so they still stand out. The Crew dropdown box takes the chosen person's status colour.
+- Sign-in: crew accounts now say "Sees the whole crew's health" (crew view has been open since Session 17).
+- All README screenshots retaken.

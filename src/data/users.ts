@@ -11,10 +11,10 @@ export interface User {
 }
 
 export const USERS: User[] = [
-  { id: 'C1', name: 'E. Vance', role: 'crew', title: 'Commander' },
-  { id: 'C2', name: 'M. Chen', role: 'cmo', title: 'Crew medical officer' },
-  { id: 'C3', name: 'S. Jenkins', role: 'crew', title: 'Science specialist' },
-  { id: 'C4', name: 'A. Rivera', role: 'crew', title: 'Flight engineer' },
+  { id: 'C1', name: 'Tulsi Gandhi', role: 'crew', title: 'Commander' },
+  { id: 'C2', name: 'Shayan Akbarloyshabgahi', role: 'cmo', title: 'Crew medical officer' },
+  { id: 'C3', name: 'Roya Alizadeh', role: 'crew', title: 'Science specialist' },
+  { id: 'C4', name: 'Khamosh Mehta', role: 'crew', title: 'Flight engineer' },
   { id: 'FS', name: 'Flight surgeon', role: 'surgeon', title: 'Mission control, Earth' },
 ]
 

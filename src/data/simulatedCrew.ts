@@ -24,10 +24,10 @@ export interface CrewMember {
 }
 
 export const CREW: CrewMember[] = [
-  { id: 'C1', build: 'female', name: 'E. Vance', role: 'Commander', baseline: { hematocritPct: 41.6, onsdMm: 6.1, hctRefMin: 35, hctRefMax: 45, wbcK: 9.8, lymphK: 3.2, vitaminDNgMl: 40, bodyMassKg: 62 } },
-  { id: 'C2', build: 'male', name: 'M. Chen', role: 'Crew medical officer (not a doctor)', baseline: { hematocritPct: 44.5, onsdMm: 5.2, hctRefMin: 38.5, hctRefMax: 50, wbcK: 7.0, lymphK: 2.7, vitaminDNgMl: 31, bodyMassKg: 78 } },
-  { id: 'C3', build: 'female', name: 'S. Jenkins', role: 'Science specialist', baseline: { hematocritPct: 37.8, onsdMm: 5.0, hctRefMin: 35, hctRefMax: 45, wbcK: 5.4, lymphK: 2.0, vitaminDNgMl: 38, bodyMassKg: 58 } },
-  { id: 'C4', build: 'male', name: 'A. Rivera', role: 'Flight engineer', baseline: { hematocritPct: 49.0, onsdMm: 5.6, hctRefMin: 38.5, hctRefMax: 50, wbcK: 10.6, lymphK: 2.9, vitaminDNgMl: 45, bodyMassKg: 84 } },
+  { id: 'C1', build: 'female', name: 'Tulsi Gandhi', role: 'Commander', baseline: { hematocritPct: 41.6, onsdMm: 6.1, hctRefMin: 35, hctRefMax: 45, wbcK: 9.8, lymphK: 3.2, vitaminDNgMl: 40, bodyMassKg: 62 } },
+  { id: 'C2', build: 'male', name: 'Shayan Akbarloyshabgahi', role: 'Crew medical officer (not a doctor)', baseline: { hematocritPct: 44.5, onsdMm: 5.2, hctRefMin: 38.5, hctRefMax: 50, wbcK: 7.0, lymphK: 2.7, vitaminDNgMl: 31, bodyMassKg: 78 } },
+  { id: 'C3', build: 'female', name: 'Roya Alizadeh', role: 'Science specialist', baseline: { hematocritPct: 37.8, onsdMm: 5.0, hctRefMin: 35, hctRefMax: 45, wbcK: 5.4, lymphK: 2.0, vitaminDNgMl: 38, bodyMassKg: 58 } },
+  { id: 'C4', build: 'male', name: 'Khamosh Mehta', role: 'Flight engineer', baseline: { hematocritPct: 49.0, onsdMm: 5.6, hctRefMin: 38.5, hctRefMax: 50, wbcK: 10.6, lymphK: 2.9, vitaminDNgMl: 45, bodyMassKg: 84 } },
 ]
 
 /** Repeatable pseudo-random number in [-1, 1]. Same inputs give the same output. */

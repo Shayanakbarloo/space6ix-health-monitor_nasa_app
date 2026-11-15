@@ -222,10 +222,14 @@ function personOf(raw: string, ctx: AskContext): { persons: string[]; firstPerso
   const roleWord: Record<string, string> = { commander: 'C1', officer: 'C2', scientist: 'C3', engineer: 'C4' }
   for (const w of words) {
     const byRole = roleWord[w]
-    const byName = crew.find((u) => {
-      const last = u.name.split(' ').at(-1)!.toLowerCase()
-      return w === last || (w.length >= 5 && distance(w, last) <= 1)
-    })
+    // First or last name, with one typo allowed in longer words.
+    const byName = crew.find((u) =>
+      u.name
+        .toLowerCase()
+        .split(' ')
+        .filter((n) => n.length > 2)
+        .some((n) => w === n || (w.length >= 5 && distance(w, n) <= 1)),
+    )
     const id = byRole ?? byName?.id
     if (id && !persons.includes(id)) persons.push(id)
     if (id) namedTokens.add(w)
@@ -672,7 +676,7 @@ function unknown(near: Answer[]): Answer {
     lead: "I couldn't find that in the onboard guide, so I won't guess.",
     lines: [
       ...(near.length > 0 ? [`Did you mean: ${near.map((a) => a.title.toLowerCase()).join('; ')}?`] : []),
-      'I can answer about a crew member ("How is S. Jenkins?"), a reading ("Is my oxygen normal?"), a NASA hazard ("What is space radiation?") or what to do ("What should we do now?").',
+      'I can answer about a crew member ("How is Roya Alizadeh?"), a reading ("Is my oxygen normal?"), a NASA hazard ("What is space radiation?") or what to do ("What should we do now?").',
       'For anything else, ask the medical officer or write to Earth in Contact home.',
     ],
     sources: [],

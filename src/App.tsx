@@ -292,12 +292,21 @@ export default function App() {
   return (
     <div className="min-h-[100dvh]">
       <header className="relative z-10 border-b border-line bg-bar/95 px-4 py-2.5 backdrop-blur-md sm:px-6 lg:sticky lg:top-0">
-        {/* Top row: logo left, the page menu in the middle, the signed-in person right.
+        {/* Top row: the signed-in person left, the page menu in the middle, the logo right.
             On smaller screens the menu gets its own centered row under them. */}
         <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-2 min-[1140px]:grid-cols-[1fr_auto_1fr]">
-          <div className="col-start-1 row-start-1 flex items-center gap-3 justify-self-start">
-            <Logo />
-            <p className="hidden text-[15px] font-semibold tracking-tight 2xl:block">Crew Health Monitor</p>
+          <div className="col-start-1 row-start-1 flex min-w-0 items-center gap-2.5 justify-self-start">
+            <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-bg font-semibold text-accent">
+              {user.name.replace(/[^A-Z]/g, '').slice(0, 2) || user.name.slice(0, 1)}
+            </span>
+            <p className="min-w-0 text-xs leading-tight">
+              <span className="block text-dim">Welcome</span>
+              <span className="block truncate text-sm font-medium text-ink">{user.name}</span>
+              <span className="block truncate text-muted">{user.title}</span>
+            </p>
+            <Button kind="ghost" onClick={() => void signOut()} aria-label="Sign out" className="px-2.5">
+              <SignOut size={18} />
+            </Button>
           </div>
 
           {!isEarth ? (
@@ -314,18 +323,9 @@ export default function App() {
             <span className="hidden min-[1140px]:col-start-2 min-[1140px]:row-start-1 min-[1140px]:block" />
           )}
 
-          <div className="col-start-2 row-start-1 flex items-center gap-2.5 justify-self-end min-[1140px]:col-start-3">
-            <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-bg font-semibold text-accent">
-              {user.name.replace(/[^A-Z]/g, '').slice(0, 2) || user.name.slice(0, 1)}
-            </span>
-            <p className="text-xs leading-tight">
-              <span className="block text-dim">Welcome</span>
-              <span className="block text-sm font-medium text-ink">{user.name}</span>
-              <span className="block text-muted">{user.title}</span>
-            </p>
-            <Button kind="ghost" onClick={() => void signOut()} aria-label="Sign out" className="px-2.5">
-              <SignOut size={18} />
-            </Button>
+          <div className="col-start-2 row-start-1 flex items-center gap-3 justify-self-end min-[1140px]:col-start-3">
+            <p className="hidden text-[15px] font-semibold tracking-tight 2xl:block">Crew Health Monitor</p>
+            <Logo />
           </div>
         </div>
 

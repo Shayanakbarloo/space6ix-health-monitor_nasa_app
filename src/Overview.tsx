@@ -16,7 +16,7 @@ import { ATTACHMENT_LABEL } from './imageAttach'
 import { LIVE_SCENARIOS, baselineFor, cabinValue, isFixed, liveValue, type ScenarioId } from './live'
 import { keyOf, type CheckIns, type Provenance, type Subject } from './model'
 import { THRESHOLDS, type CabinReading, type CrewReading, type Finding, type ImageAttachment, type Level } from './triage'
-import { Button, Chip, EASE, Gauge, IconBadge, LEVEL_LINE, SPRING, Sparkline } from './ui'
+import { Button, Chip, EASE, Gauge, IconBadge, LEVEL_LINE, LEVEL_TINT, SPRING, Sparkline } from './ui'
 
 const PANEL = 'rounded-2xl border border-line bg-panel'
 const worst = (list: Finding[]): Level => (list.some((f) => f.level === 'red') ? 'red' : list.some((f) => f.level === 'amber') ? 'amber' : 'green')
@@ -107,6 +107,7 @@ export default function Overview({ user, day, mission, scenario, subjects, readi
               onChange={pick}
               align="left"
               listWidth="w-full"
+              tint
               options={mine.map((s) => ({ id: s.id, label: s.name, detail: s.role, level: worst(s.findings), note: LEVEL_WORD[worst(s.findings)] }))}
             />
             <p className="mt-2 text-xs text-muted">Pick a crew member or the cabin to see their health now.</p>
@@ -184,7 +185,7 @@ export default function Overview({ user, day, mission, scenario, subjects, readi
               <motion.div key={current.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
                 {[...attention, ...normal].map((f, i) => (
                   <div key={f.id}>
-                    {i === attention.length && normal.length > 0 && <p className="border-t border-line-soft px-5 pt-4 pb-1 text-xs text-muted">Normal now</p>}
+                    {i === attention.length && normal.length > 0 && <p className="px-5 pt-3 pb-0.5 text-xs text-muted">Normal now</p>}
                     <SignalRow
                       index={i}
                       f={f}
@@ -395,7 +396,6 @@ interface RowProps {
   mission: MissionId
 }
 
-const ACTION_BOX: Record<Level, string> = { green: 'bg-ok-bg', amber: 'bg-check-bg', red: 'bg-urgent-bg' }
 const ACTION_TEXT: Record<Level, string> = { green: 'text-ok', amber: 'text-check', red: 'text-urgent' }
 
 function SignalRow({ index, f, compact, info, trend, attachment, open, onToggle, onHover, onCheckIn, onEmergency, mission }: RowProps) {
@@ -412,12 +412,12 @@ function SignalRow({ index, f, compact, info, trend, attachment, open, onToggle,
       transition={{ duration: 0.3, delay: index * 0.035, ease: EASE }}
       onPointerEnter={() => onHover(true)}
       onPointerLeave={() => onHover(false)}
-      className={`border-t border-line-soft transition-colors duration-200 ${open ? 'bg-raised/60' : ''}`}
+      className={`mx-3 mb-2 overflow-hidden rounded-xl border transition-colors duration-200 ${LEVEL_TINT[f.level]} ${open ? 'shadow-[0_6px_18px_-12px_rgba(30,64,130,0.35)]' : ''}`}
     >
-      <button onClick={onToggle} aria-expanded={open} className={`flex w-full flex-col px-5 text-left hover:bg-raised/50 ${compact ? 'gap-0.5 py-2.5' : 'gap-2 py-3.5'}`}>
+      <button onClick={onToggle} aria-expanded={open} className={`flex w-full flex-col px-4 text-left hover:bg-white/35 ${compact ? 'gap-0.5 py-2.5' : 'gap-2 py-3.5'}`}>
         <span className="flex w-full items-center gap-2">
           <span className={`min-w-0 flex-1 ${compact ? 'text-muted' : 'text-[15px] font-semibold'}`}>{f.title}</span>
-          <Chip level={f.level} />
+          <Chip level={f.level} onTint />
           <motion.span animate={{ rotate: open ? 180 : 0 }} transition={SPRING} className="text-dim">
             <CaretDown size={16} />
           </motion.span>
@@ -439,9 +439,9 @@ function SignalRow({ index, f, compact, info, trend, attachment, open, onToggle,
       <AnimatePresence initial={false}>
         {open && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: EASE }} className="overflow-hidden">
-            <div className="space-y-4 px-5 pt-1 pb-5">
-              {/* First thing to read: what to do. */}
-              <div className={`rounded-xl p-4 ${ACTION_BOX[f.level]}`}>
+            <div className="space-y-4 px-4 pt-1 pb-4">
+              {/* First thing to read: what to do. White, so it stands out on the coloured box. */}
+              <div className="rounded-xl bg-panel p-4">
                 <p className={`text-xs font-semibold ${ACTION_TEXT[f.level]}`}>{f.level === 'green' ? 'Nothing to do' : 'Do this next'}</p>
                 <p className="mt-1 text-[15px] leading-snug font-medium">{f.next}</p>
                 {(f.level !== 'green' || info?.stale) && (
@@ -465,7 +465,7 @@ function SignalRow({ index, f, compact, info, trend, attachment, open, onToggle,
               <p className="leading-relaxed">{f.why}</p>
 
               {attachment && (
-                <figure className="rounded-xl border border-line p-3 text-[13px]">
+                <figure className="rounded-xl border border-line bg-panel/70 p-3 text-[13px]">
                   <img src={attachment.dataUrl} alt={attachment.caption ?? 'Attached eye ultrasound'} className="max-h-72 w-auto max-w-full rounded-lg border border-line-strong" />
                   <figcaption className="mt-2 leading-relaxed text-muted">
                     <span className="text-ink">Image attached to today's check-in.</span> {attachment.caption ? `${attachment.caption}. ` : ''}
@@ -475,7 +475,7 @@ function SignalRow({ index, f, compact, info, trend, attachment, open, onToggle,
               )}
 
               {GUIDE[f.id] && (
-                <div className="rounded-xl border border-line p-3 text-[13px] leading-relaxed">
+                <div className="rounded-xl border border-line bg-panel/70 p-3 text-[13px] leading-relaxed">
                   <p className="mb-1 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
                     About this measurement
                     <span className="rounded-md border border-line-strong px-1.5 py-0.5 text-ink">Hazard: {GUIDE[f.id].hazard}</span>

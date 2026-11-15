@@ -18,8 +18,12 @@ describe('Ask: the crew right now', () => {
   it('answers about the whole crew and about one person, by name, role or pronoun', () => {
     const ctx = ctxFor('isolation')
     expect(first('How is the crew?', ctx).topic).toBe('crew')
-    expect(first('How is the crew?', ctx).lead).toContain('A. Rivera')
-    expect(first('how is rivera', ctx).topic).toBe('person:C4')
+    expect(first('How is the crew?', ctx).lead).toContain('Khamosh Mehta')
+    expect(first('how is mehta', ctx).topic).toBe('person:C4')
+    expect(first('how is khamosh', ctx).topic).toBe('person:C4')
+    expect(first('is roya ok?', ctx).topic).toBe('person:C3')
+    expect(first('how is tulsi gandi', ctx).topic).toBe('person:C1')
+    expect(first('how is shayan akbarloyshabgahi', ctxFor('normal', 'mars', 'C3')).topic).toBe('person:C2')
     expect(first('how is the flight engineer doing?', ctx).topic).toBe('person:C4')
     expect(first('how am i', ctx).topic).toBe('person:C2')
     // Follow-up: "him" is the last person asked about.
@@ -32,7 +36,7 @@ describe('Ask: the crew right now', () => {
     const mine = first('Is my oxygen normal?', ctx)
     expect(mine.topic).toBe('signal:C2:vitals')
     expect(mine.lead).toMatch(/^Normal for you: SpO2 \d+%/)
-    expect(first('who has a headache?', ctx).lead).toContain('S. Jenkins')
+    expect(first('who has a headache?', ctx).lead).toContain('Roya Alizadeh')
     expect(first('who has a headache?', ctxFor('normal')).lead).toBe('Nobody has reported a headache right now.')
     expect(first('is the air safe', ctx).topic).toBe('signal:cabin:co2')
   })
@@ -81,7 +85,7 @@ describe('Ask: knowledge from NASA and CSA', () => {
     const ctx = ctxFor('normal')
     expect(first('what is space radation', ctx).topic).toBe('hazard:Space radiation')
     expect(first('what is hematocrite', ctx).topic).toBe('signal:C2:hematocrit')
-    expect(first('how is jenkens', ctx).topic).toBe('person:C3')
+    expect(first('how is alizade', ctx).topic).toBe('person:C3')
   })
 
   it('answers about the app and Contact home, including the blackout', () => {
@@ -127,7 +131,7 @@ describe('Ask: honest and plain', () => {
   it('greets, thanks and suggests questions that fit the situation', () => {
     expect(first('hi', ctxFor('normal')).topic).toBe('greet')
     expect(first('thanks!', ctxFor('normal')).topic).toBe('thanks')
-    expect(suggestions(ctxFor('gravity', 'moon'))).toContain('How is E. Vance?')
+    expect(suggestions(ctxFor('gravity', 'moon'))).toContain('How is Tulsi Gandhi?')
     expect(suggestions(ctxFor('normal'))[0]).toBe('How is the crew?')
   })
 })

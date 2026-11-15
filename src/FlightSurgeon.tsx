@@ -518,7 +518,7 @@ function Blackout({ plan, minute, done, log, approved, note, setNote, onDone, on
                 onChange={(e) => setNote(e.target.value)}
                 maxLength={MAX_LOG_TEXT}
                 disabled={log.length >= MAX_LOG}
-                placeholder={log.length >= MAX_LOG ? 'The log is full' : 'For example: S. Jenkins took a pain reliever'}
+                placeholder={log.length >= MAX_LOG ? 'The log is full' : 'For example: Roya Alizadeh took a pain reliever'}
                 className="min-h-11 w-full rounded-xl border border-line-strong bg-ground px-3 text-sm text-ink placeholder:text-dim focus:border-ink disabled:opacity-60"
               />
             </label>

@@ -26,9 +26,23 @@ export function Logo() {
   )
 }
 
-export function Chip({ level, className = '', tag }: { level: Level; className?: string; tag?: string }) {
+/** On a box that is already tinted with the status colour, the chip is white so it still stands out. */
+const LEVEL_CHIP_ON_TINT: Record<Level, string> = {
+  green: 'border-transparent bg-panel text-ok',
+  amber: 'border-transparent bg-panel text-check',
+  red: 'border-transparent bg-panel text-urgent',
+}
+
+/** The whole box in the status colour: soft green, yellow or red. */
+export const LEVEL_TINT: Record<Level, string> = {
+  green: 'border-ok/15 bg-ok-bg/70',
+  amber: 'border-check/25 bg-check-bg',
+  red: 'border-urgent/25 bg-urgent-bg',
+}
+
+export function Chip({ level, className = '', tag, onTint = false }: { level: Level; className?: string; tag?: string; onTint?: boolean }) {
   return (
-    <span className={`inline-flex h-6 min-w-[58px] items-center justify-center gap-1 rounded-md border px-2 text-xs font-medium ${LEVEL_CHIP[level]} ${className}`}>
+    <span className={`inline-flex h-6 min-w-[58px] items-center justify-center gap-1 rounded-md border px-2 text-xs font-medium ${(onTint ? LEVEL_CHIP_ON_TINT : LEVEL_CHIP)[level]} ${className}`}>
       {tag && <span className="text-[10px] font-normal opacity-70">{tag}</span>}
       {LEVEL_LABEL[level]}
     </span>

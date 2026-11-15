@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { CaretDown, Check, Lock } from '@phosphor-icons/react'
 import type { Level } from './triage'
-import { EASE, LEVEL_LINE, SPRING } from './ui'
+import { EASE, LEVEL_LINE, LEVEL_TINT, SPRING } from './ui'
 
 export interface DropdownOption {
   id: string
@@ -31,6 +31,8 @@ interface Props {
   listWidth?: string
   className?: string
   footer?: ReactNode
+  /** Colour the whole button with the chosen option's status, instead of a status word. */
+  tint?: boolean
 }
 
 export const Dot = ({ level, className = '' }: { level: Level; className?: string }) => (
@@ -38,11 +40,12 @@ export const Dot = ({ level, className = '' }: { level: Level; className?: strin
 )
 
 /** A button that opens a list to pick one option. Closes on a click outside or Escape; arrow keys move. */
-export default function Dropdown({ caption, label, value, options, onChange, align = 'right', listWidth = 'w-[20rem]', className = '', footer }: Props) {
+export default function Dropdown({ caption, label, value, options, onChange, align = 'right', listWidth = 'w-[20rem]', className = '', footer, tint = false }: Props) {
   const [open, setOpen] = useState(false)
   const box = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
   const chosen = options.find((o) => o.id === value)
+  const tinted = tint && chosen?.level ? LEVEL_TINT[chosen.level] : null
 
   useEffect(() => {
     if (!open) return
@@ -79,14 +82,14 @@ export default function Dropdown({ caption, label, value, options, onChange, ali
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`press flex min-h-11 w-full items-center gap-2.5 rounded-full border bg-panel px-4 text-left leading-tight ${open ? 'border-muted' : 'border-line-strong hover:border-muted'}`}
+        className={`press flex min-h-11 w-full items-center gap-2.5 rounded-full border px-4 text-left leading-tight ${tinted ?? `bg-panel ${open ? 'border-muted' : 'border-line-strong hover:border-muted'}`}`}
       >
         {chosen?.level && <Dot level={chosen.level} />}
         <span className="min-w-0 flex-1">
           <span className="block truncate text-[11px] text-muted">{caption}</span>
           <span className="block truncate text-sm font-medium">{chosen?.label}</span>
         </span>
-        {chosen?.note && <span className="shrink-0 text-xs text-muted">{chosen.note}</span>}
+        {chosen?.note && !tinted && <span className="shrink-0 text-xs text-muted">{chosen.note}</span>}
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={SPRING} className="flex shrink-0 text-muted">
           <CaretDown size={14} weight="bold" />
         </motion.span>

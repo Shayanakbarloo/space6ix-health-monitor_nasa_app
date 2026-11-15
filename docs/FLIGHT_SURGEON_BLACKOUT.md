@@ -4,7 +4,7 @@ The Flight surgeon page plans a 90-minute blackout, when there is no contact wit
 
 ## Try it with two tabs
 
-1. Sign in as **M. Chen** and pick the **Flagged** scenario. Open **Flight surgeon**. The plan is already made from Live monitor: S. Jenkins to watch, the steps, and what to do if something happens. Add a question and press **Send plan to the flight surgeon**.
+1. Sign in as **Shayan Akbarloyshabgahi** and pick the **Flagged** scenario. Open **Flight surgeon**. The plan is already made from Live monitor: Roya Alizadeh to watch, the steps, and what to do if something happens. Add a question and press **Send plan to the flight surgeon**.
 2. In a second tab of the same browser, sign in as **Flight surgeon**. The plan arrives in Contact home after the signal delay (16 seconds on Mars transit, about a second on the Moon or the space station). Press **Show the full plan** to read it, write any instructions, and press **Approve plan**.
 3. Back in the crew tab, the approval arrives after the delay with the instructions. Press **Start the blackout**.
 4. The page shows the step to do now. Press **Done** after each one. Add what happens to the log. Try **Open Emergency mode** under "If this happens". Contact home and the report button are paused, and the header shows "No contact · N min left".

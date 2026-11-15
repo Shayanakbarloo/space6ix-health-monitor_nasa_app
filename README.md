@@ -6,7 +6,7 @@ Health monitoring for a crew that cannot call a doctor. Built for the NASA Space
 
 **Live demo: https://space6ix-health-monitor.vercel.app**
 
-![Live monitor in the Emergency scenario: A. Rivera's neck vein flagged as urgent, live vitals on the left, the signal explained on the right](docs/signal-detail.png)
+![Live monitor in the Emergency scenario: Khamosh Mehta's neck vein flagged as urgent, live vitals on the left, the signal explained on the right](docs/signal-detail.png)
 
 ## The problem
 
@@ -56,7 +56,7 @@ The crew alert path uses the source-linked rules.
 
 ### Live monitor
 
-Live monitor is the first screen after sign-in. The page menu (Live monitor, Contact home, Ask, Flight surgeon) sits in the middle of the header, with the setting, scenario, clock and buttons centered under it. Live monitor opens on the signed-in person's own health and shows the crew as they are now: a LIVE clock in the header, and heart rate, oxygen, temperature and blood pressure that update every two seconds. Pick any crew member or the cabin from the **Crew** dropdown; each name shows its status (Normal, Check or Urgent). After a check-in it shows the person the check-in was for.
+Live monitor is the first screen after sign-in. The page menu (Live monitor, Contact home, Ask, Flight surgeon) sits in the middle of the header, with the signed-in person on the left, the logo on the right, and the setting, scenario, clock and buttons centered under it. Live monitor opens on the signed-in person's own health and shows the crew as they are now: a LIVE clock in the header, and heart rate, oxygen, temperature and blood pressure that update every two seconds. Pick any crew member or the cabin from the **Crew** dropdown; each name shows its status (Normal, Check or Urgent), and the dropdown box takes the chosen person's status colour. Each signal on the right is a box filled with its status colour, so what needs attention stands out at a glance. After a check-in it shows the person the check-in was for.
 
 The look is light and calm: white rounded cards on a soft blue background, black round icons and a white 3D body, so the status colours (green Normal, yellow Check, red Urgent) stand out.
 
@@ -64,7 +64,7 @@ A 3D body built from real anatomical models. The part of the body behind each fl
 
 Each signal shows what to do next first, then the reason, then a plain explanation of the measurement (what it is, why it matters in space, how to take it), then where the reading came from.
 
-![Live monitor in the Flagged scenario: S. Jenkins has a slight fever and a headache](docs/crew-health.png)
+![Live monitor in the Flagged scenario: Roya Alizadeh has a slight fever and a headache](docs/crew-health.png)
 
 ### Live scenarios
 
@@ -73,8 +73,8 @@ The **Scenario** menu in the header plays one of eight simulated situations for 
 | Scenario | What happens | What the steps do |
 |---|---|---|
 | Normal | Every astronaut and the cabin are normal | Nothing to fix; routine reminders |
-| Flagged | S. Jenkins has a slight fever (about 38.3 C) and a headache | Give a fever and pain reliever from the medical kit, then watch the temperature come back to normal (about a minute in the demo, about an hour in real life). The problem then shows Fixed |
-| Emergency | A. Rivera may have a blood clot in the left neck vein, with a fast pulse | Alert the flight surgeon, see ground control get the alert after the signal delay, and get a second opinion from Earth |
+| Flagged | Roya Alizadeh has a slight fever (about 38.3 C) and a headache | Give a fever and pain reliever from the medical kit, then watch the temperature come back to normal (about a minute in the demo, about an hour in real life). The problem then shows Fixed |
+| Emergency | Khamosh Mehta may have a blood clot in the left neck vein, with a fast pulse | Alert the flight surgeon, see ground control get the alert after the signal delay, and get a second opinion from Earth |
 
 #### NASA's five space hazards
 
@@ -83,9 +83,9 @@ Each hazard scenario is built from the challenge's NASA and CSA pages: the situa
 | Scenario | NASA hazard | What happens | What the crew does |
 |---|---|---|---|
 | Solar storm | Space radiation | Radiation in the cabin jumps to about 30 times normal (urgent) | Build the storm shelter from stowage bags (the dose rate where the crew is drops to a quarter, as measured on Artemis I), no spacewalks, read dosimeters, tell Earth's radiation team. The storm passes and the all-clear ticks itself |
-| Isolation | Isolation and confinement | A. Rivera's mood and sleep have been low all week | A private talk, a private call with Earth's behavioral health team, light and a fixed sleep schedule, a journal, time at the window or with the plants, a check-in again next week |
-| Earth out of reach | Distance from Earth | Mars is behind the Sun, so there is no contact for about two weeks, and S. Jenkins has side pain and low urine (possible kidney stone) | The medical officer leads, checks danger signs, gives a pain reliever, water, a kidney scan, and writes a report that waits on board. Contact home is paused |
-| Landing day | Gravity fields | Just landed on the Moon: E. Vance is dizzy, with a fast pulse and low blood pressure | Lie down, water with salt, compression garment, move slowly with a crewmate, no piloting or moonwalk. Heart rate and blood pressure come back and it shows Fixed |
+| Isolation | Isolation and confinement | Khamosh Mehta's mood and sleep have been low all week | A private talk, a private call with Earth's behavioral health team, light and a fixed sleep schedule, a journal, time at the window or with the plants, a check-in again next week |
+| Earth out of reach | Distance from Earth | Mars is behind the Sun, so there is no contact for about two weeks, and Roya Alizadeh has side pain and low urine (possible kidney stone) | The medical officer leads, checks danger signs, gives a pain reliever, water, a kidney scan, and writes a report that waits on board. Contact home is paused |
+| Landing day | Gravity fields | Just landed on the Moon: Tulsi Gandhi is dizzy, with a fast pulse and low blood pressure | Lie down, water with salt, compression garment, move slowly with a crewmate, no piloting or moonwalk. Heart rate and blood pressure come back and it shows Fixed |
 | Cabin CO2 | Hostile and closed environments | The main CO2 scrubber fails, CO2 climbs past NASA's 3 mmHg limit, and two crew get headaches | Switch on the backup CO2 removal, tell flight controllers, pause hard exercise, keep fans on. CO2 falls under the limit and the headaches pass |
 
 The storm size, the caution and shelter levels (5 and 20 times normal) and the timings are demo values; NASA uses a caution level and a shelter level but does not publish the numbers on its page. Each demo plays hours or days in about a minute.
@@ -94,7 +94,7 @@ The storm size, the caution and shelter levels (5 and 20 times normal) and the t
 |---|---|
 | ![Scenario menu with the three crew health scenarios and NASA's five space hazards](docs/hazard-menu.png) | ![Solar storm: radiation now 30 times normal, everyone to the storm shelter](docs/hazard-solar-storm.png) |
 | **Landing day on the Moon** | **Earth out of reach** |
-| ![Landing day: E. Vance dizzy with a fast pulse and low blood pressure](docs/hazard-landing-day.png) | ![Earth out of reach: no contact with Earth, S. Jenkins has side pain](docs/hazard-earth-out-of-reach.png) |
+| ![Landing day: Tulsi Gandhi dizzy with a fast pulse and low blood pressure](docs/hazard-landing-day.png) | ![Earth out of reach: no contact with Earth, Roya Alizadeh has side pain](docs/hazard-earth-out-of-reach.png) |
 
 ![Steps for the solar storm, with the NASA hazard and its sources](docs/hazard-steps-storm.png)
 
@@ -172,7 +172,7 @@ Messages and health reports to Earth travel with the signal delay for the missio
 
 An onboard guide that answers questions in plain words. It needs no AI model and no connection to Earth, which matters most when Earth is out of reach. It knows:
 
-- **The crew right now:** "How is the crew?", "How is S. Jenkins?", "Is my oxygen normal?", "Who has a headache?". It uses everyone's live readings and says what to do.
+- **The crew right now:** "How is the crew?", "How is Roya Alizadeh?", "Is my oxygen normal?", "Who has a headache?". It uses everyone's live readings and says what to do.
 - **The situation:** "What's happening right now?", "What should we do now?", "Why does this happen?". It knows the scenario being played and its steps.
 - **NASA and CSA knowledge:** the five hazards, the 17 risks, NASA's current studies, and facts with numbers from the challenge's pages and the sources behind the rules (bone loss, SANS, fainting after landing, the Mars delay and solar conjunction, neutrons on the station, the storm shelter, CO2 limits, sleep, mood, kidney stones and more).
 - **The app:** pages, check-ins, Emergency mode, Contact home and its delay, planning a blackout, who can see what.

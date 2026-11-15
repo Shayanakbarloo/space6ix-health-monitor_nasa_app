@@ -18,7 +18,7 @@ describe('live scenarios', () => {
     for (const at of ticks) expect(flaggedIds('normal', at).map((s) => s.id)).toEqual([])
   })
 
-  it('flagged: only S. Jenkins, with a fever and a headache, nothing urgent', () => {
+  it('flagged: only Roya Alizadeh, with a fever and a headache, nothing urgent', () => {
     for (const at of ticks) {
       const flagged = flaggedIds('flagged', at)
       expect(flagged.map((s) => s.id)).toEqual(['C3'])
@@ -38,7 +38,7 @@ describe('live scenarios', () => {
     expect(flaggedIds('flagged', T0 + FEVER_FALL_MS + TICK_MS, {}, care)).toEqual([])
   })
 
-  it('emergency: A. Rivera has an urgent finding (neck vein clot); everyone else is normal', () => {
+  it('emergency: Khamosh Mehta has an urgent finding (neck vein clot); everyone else is normal', () => {
     for (const at of ticks) {
       const flagged = flaggedIds('emergency', at)
       expect(flagged.map((s) => s.id)).toEqual(['C4'])
@@ -145,7 +145,7 @@ describe('NASA space hazard scenarios', () => {
     expect(isFixed('co2', subject('co2', CABIN_ID, after, care))).toBe(true)
   })
 
-  it('isolation: only A. Rivera, with low mood and short sleep, nothing urgent', () => {
+  it('isolation: only Khamosh Mehta, with low mood and short sleep, nothing urgent', () => {
     for (const at of ticks.slice(0, 60)) {
       expect(flagged('isolation', at)).toEqual(['C4'])
       const bad = subject('isolation', 'C4', at).findings.filter((f) => f.level !== 'green').map((f) => f.id)
@@ -154,7 +154,7 @@ describe('NASA space hazard scenarios', () => {
     expect(LIVE_SCENARIOS.isolation.clearWhen).toBeUndefined()
   })
 
-  it('Earth out of reach: no contact, and S. Jenkins has side pain and low urine; the pain reliever eases the pain', () => {
+  it('Earth out of reach: no contact, and Roya Alizadeh has side pain and low urine; the pain reliever eases the pain', () => {
     expect(LIVE_SCENARIOS.distance.blackout).toBe(true)
     expect(LIVE_SCENARIOS.distance.mission).toBe('mars')
     for (const at of ticks.slice(0, 60)) {
@@ -167,7 +167,7 @@ describe('NASA space hazard scenarios', () => {
     expect(level('distance', 'C3', 'urine', later, { pill: T0 })).toBe('amber')
   })
 
-  it('landing day on the Moon: E. Vance is dizzy, with a fast pulse and low blood pressure, until she lies down', () => {
+  it('landing day on the Moon: Tulsi Gandhi is dizzy, with a fast pulse and low blood pressure, until she lies down', () => {
     expect(LIVE_SCENARIOS.gravity.mission).toBe('moon')
     for (const at of ticks.slice(0, 60)) {
       expect(flagged('gravity', at, {}, 'moon')).toEqual(['C1'])

@@ -89,7 +89,7 @@ export const CARE_STEPS: Record<ScenarioId, CareStep[]> = {
     },
   ],
   isolation: [
-    { id: 'talk', title: 'Check in with A. Rivera in private', detail: 'The medical officer, or a crewmate he trusts, asks how he is doing somewhere private. Listen first.' },
+    { id: 'talk', title: 'Check in with Khamosh Mehta in private', detail: 'The medical officer, or a crewmate he trusts, asks how he is doing somewhere private. Listen first.' },
     {
       id: 'alert',
       title: 'Book a private call with Earth',
@@ -207,11 +207,11 @@ export const REVIEW_MS = 8000
 /** The answer shown when no real reply has come back from the flight surgeon tab. */
 export const SIMULATED_REPLY: Partial<Record<ScenarioId, string>> = {
   emergency:
-    'The flight surgeon and a vascular specialist reviewed the alert. They agree it looks like a clot in the left neck vein. Keep A. Rivera resting, send the saved ultrasound images, and do not start any medicine until the flight surgeon sends the treatment plan.',
+    'The flight surgeon and a vascular specialist reviewed the alert. They agree it looks like a clot in the left neck vein. Keep Khamosh Mehta resting, send the saved ultrasound images, and do not start any medicine until the flight surgeon sends the treatment plan.',
   radiation:
     'Space radiation team: the solar storm is past its peak. Stay in the shelter until the dose rate is under the caution level, keep your dosimeters on, and no spacewalks for the next day. We will send the all-clear.',
   isolation:
-    'Behavioral health team: a private session for A. Rivera is booked for the next communication window, and a family call the day after. Keep the light and sleep plan going and keep the journal.',
+    'Behavioral health team: a private session for Khamosh Mehta is booked for the next communication window, and a family call the day after. Keep the light and sleep plan going and keep the journal.',
   co2: 'Flight controllers: keep the backup CO2 removal running. A repair procedure for the main scrubber is on its way. Keep the fans on in the crew quarters and pause hard exercise until CO2 is under 3 mmHg.',
 }
 export const SIMULATED_SECOND_OPINION = SIMULATED_REPLY.emergency ?? ''

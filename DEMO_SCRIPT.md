@@ -1,6 +1,6 @@
 # Three-minute demo script
 
-Run it locally for the demo (`npm run dev`) so the real server is behind it. Have two browser tabs ready: one signed in as **M. Chen** (medical officer), one as **Flight surgeon**, with the same mission setting. Choosing a person signs in straight away (no PIN) and opens Live monitor. The live link (https://space6ix-health-monitor.vercel.app) also works, with Contact home between tabs of one browser.
+Run it locally for the demo (`npm run dev`) so the real server is behind it. Have two browser tabs ready: one signed in as **Shayan Akbarloyshabgahi** (medical officer), one as **Flight surgeon**, with the same mission setting. Choosing a person signs in straight away (no PIN) and opens Live monitor. The live link (https://space6ix-health-monitor.vercel.app) also works, with Contact home between tabs of one browser.
 
 ## 0:00 Say this first (15 seconds)
 
@@ -15,7 +15,7 @@ In the header, set **Scenario** to **Normal**.
 
 ## 0:40 A small problem: a pill fixes it (40 seconds)
 
-Set **Scenario** to **Flagged**. The app opens S. Jenkins.
+Set **Scenario** to **Flagged**. The app opens Roya Alizadeh.
 
 - "She has a slight fever, 38.3, and a headache. Cabin CO2 is low, so the air is not the cause."
 - Click **See the steps**. "A non-doctor can follow this." Press **Mark as taken** on the pain reliever step. "Pain relievers are among the medicines ISS crews use most. The dose comes from the kit label."
@@ -23,7 +23,7 @@ Set **Scenario** to **Flagged**. The app opens S. Jenkins.
 
 ## 1:20 An emergency: Earth has to help (50 seconds)
 
-Set **Scenario** to **Emergency**. The app opens A. Rivera.
+Set **Scenario** to **Emergency**. The app opens Khamosh Mehta.
 
 - "The neck ultrasound shows a possible blood clot, and his pulse is fast. This happened on the ISS in 2020, and doctors on Earth directed the treatment."
 - In the steps, press **Send alert to Earth**. "On the way to Mars this takes 16 minutes. The demo plays one minute as one second."

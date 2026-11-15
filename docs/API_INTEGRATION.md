@@ -14,7 +14,7 @@ The API reads the generated research bundle at startup. Restart the server after
 
 ## Authentication and queries
 
-Login with POST /api/login and a demo account (no PIN), then send the returned bearer token on each request. C1 (E. Vance) can read their own crew vitals, C2 (medical officer) can read any crew member's vitals, and FS (flight surgeon) has no direct access to crew vitals. Signed-in users can read public study data. Keep NASA pseudonyms such as C001 independent of app accounts such as C1.
+Login with POST /api/login and a demo account (no PIN), then send the returned bearer token on each request. C1 (Tulsi Gandhi) can read their own crew vitals, C2 (medical officer) can read any crew member's vitals, and FS (flight surgeon) has no direct access to crew vitals. Signed-in users can read public study data. Keep NASA pseudonyms such as C001 independent of app accounts such as C1.
 
 ```powershell
 $api = 'http://localhost:5173/api'
@@ -72,7 +72,7 @@ The Flight surgeon page keeps its blackout (plan, start time, steps done, log) i
 A crew plan is POST /api/messages with `kind: "report"` and a body whose first line is `BLACKOUT PLAN v1`, the second line the plan as JSON, then the plan as text (the separator is a newline):
 
 ```json
-{"kind":"report","day":62,"mission":"mars","body":"BLACKOUT PLAN v1\n{\"id\":\"bp-1\",\"watch\":[{\"id\":\"C3\",\"name\":\"S. Jenkins\",\"issue\":\"headache\"}],\"steps\":[{\"id\":\"s0\",\"at\":0,\"text\":\"Contact is lost.\"}],\"question\":\"\"}\n\nBlackout plan: 90 minutes without contact with Earth."}
+{"kind":"report","day":62,"mission":"mars","body":"BLACKOUT PLAN v1\n{\"id\":\"bp-1\",\"watch\":[{\"id\":\"C3\",\"name\":\"Roya Alizadeh\",\"issue\":\"headache\"}],\"steps\":[{\"id\":\"s0\",\"at\":0,\"text\":\"Contact is lost.\"}],\"question\":\"\"}\n\nBlackout plan: 90 minutes without contact with Earth."}
 ```
 
 The flight surgeon approves with `kind: "message"` and the plan's id, sent with the ground session token. It reaches the crew after the return delay:

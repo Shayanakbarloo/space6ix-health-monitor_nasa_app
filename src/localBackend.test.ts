@@ -27,7 +27,7 @@ describe('sign-in without a PIN', () => {
   it('choosing a demo person is enough', () => {
     const r = signIn('C1')
     expect(r.status).toBe(200)
-    expect(r.data).toMatchObject({ token: 'local:C1', user: { id: 'C1', name: 'E. Vance' } })
+    expect(r.data).toMatchObject({ token: 'local:C1', user: { id: 'C1', name: 'Tulsi Gandhi' } })
   })
   it('an unknown person is refused', () => {
     expect(signIn('nobody').status).toBe(401)

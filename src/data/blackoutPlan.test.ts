@@ -24,9 +24,9 @@ describe('blackout plan', () => {
     const p = planFor('co2')
     expect(p.watch.map((w) => w.id)).toEqual(['C3', 'C4', CABIN_ID])
     expect(p.watch.find((w) => w.id === CABIN_ID)?.issue).toBe('CO2')
-    expect(p.steps.find((s) => s.at === 15)?.text).toBe('Check S. Jenkins (headache) and A. Rivera (headache) again.')
+    expect(p.steps.find((s) => s.at === 15)?.text).toBe('Check Roya Alizadeh (headache) and Khamosh Mehta (headache) again.')
     expect(p.steps.find((s) => s.at === 30)?.text).toContain('follow its steps')
-    expect(planRules(p).slice(0, 2).map((r) => r.when)).toEqual(['S. Jenkins gets worse', 'A. Rivera gets worse'])
+    expect(planRules(p).slice(0, 2).map((r) => r.when)).toEqual(['Roya Alizadeh gets worse', 'Khamosh Mehta gets worse'])
     // Titles are shortened for a step: no brackets.
     expect(planFor('isolation').watch[0].issue).toBe('sleep, mood')
   })
@@ -87,14 +87,14 @@ describe('during the blackout', () => {
   it('the last message before contact is lost, and the report when it returns', () => {
     expect(isStartMessage(startMessage(true))).toBe(true)
     expect(startMessage(true)).toContain('plan you approved')
-    const log: LogEntry[] = [{ at: 22, text: 'S. Jenkins took a pain reliever.' }]
+    const log: LogEntry[] = [{ at: 22, text: 'Roya Alizadeh took a pain reliever.' }]
     const r = blackoutReport(p, { s0: 1, s15: 16 }, log, { by: 'surgeon', name: 'Flight surgeon', note: 'Recheck at 30 min.' }, 90)
     expect(isBlackoutReport(r)).toBe(true)
     expect(r).toContain('approved by the flight surgeon (instructions: Recheck at 30 min.)')
     expect(r).toContain('Steps done: 2 of 6.')
-    expect(r).toContain('Done at 16 min: Check S. Jenkins')
+    expect(r).toContain('Done at 16 min: Check Roya Alizadeh')
     expect(r).toContain('Not done: Get the report ready')
-    expect(r).toContain('22 min: S. Jenkins took a pain reliever.')
+    expect(r).toContain('22 min: Roya Alizadeh took a pain reliever.')
     expect(blackoutReport(p, {}, [], { by: 'none' }, 40)).toContain('contact is back after 40 of 90 minutes')
     expect(blackoutReport(p, {}, [], { by: 'none' }, 90)).toContain('not approved before contact was lost')
     expect(blackoutReport(p, {}, [], { by: 'auto' }, 90)).toContain('automatic answer')
