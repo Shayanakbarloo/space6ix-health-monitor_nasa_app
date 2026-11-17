@@ -6,7 +6,7 @@ Health monitoring for a crew that cannot call a doctor. Built for the NASA Space
 
 > **Read this first.** The crew and its device feed are simulated. It is a concept demonstrator for a hackathon, not a medical device, and it has not been clinically validated.
 
-**Live demo: https://space6ix-health-monitor.vercel.app**
+**Live demo: [https://space6ix-health-monitor.vercel.app](https://space6ix-health-monitornasaapp.vercel.app/)**
 
 **Put it on a phone like an app:** on iPhone, open the link in Safari, tap Share, then **Add to Home Screen**. On Android, open it in Chrome, tap the menu, then **Install app**. On a computer, click the install icon in Chrome's or Edge's address bar. SOMA then opens full screen with its own icon, and after the first visit it also starts without a connection.
 
